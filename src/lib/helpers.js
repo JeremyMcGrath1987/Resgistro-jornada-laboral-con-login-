@@ -1,0 +1,16 @@
+const bcrypt = require('bcryptjs');
+
+const helpers = {};
+
+helpers.encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    return hash
+};
+
+helpers.comparacionPassword = async (password, savePassword) => {
+    return await bcrypt.compare(password, savePassword);
+    
+}
+
+module.exports = helpers;

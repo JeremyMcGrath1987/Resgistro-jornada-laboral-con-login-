@@ -1,0 +1,75 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="container p-1">
+            <div class="row">
+                <div class="col-md-5 mx-auto">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h1 id="date"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-1">
+            <div class="row">
+                <div class="col-md-2 mx-auto text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="/fichajes/add" class="btn btn-primary">Fichaje Actual</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#each fichajes}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p>Entrada:</p>
+                    <p>{{clock_in}}</p>
+                    <hr>
+                    <p>Salida:</p>
+                    <p>{{clock_out}}</p>
+                    {{#if salida}}
+                    <a href="/fichajes/delete/{{id}}" class="btn btn-danger">Fichar Salida</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay fichajes guardados aún.</p>
+                <a href="/fichajes/add">¡Fichar Entrada!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+</div>
+<script>
+
+    function fechaHora() {
+
+        let diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+        let reloj = new Date;
+
+        let hora = reloj.getHours();
+        let minuto = reloj.getMinutes();
+        let dia = reloj.getDate();
+
+        str_minuto = new String(minuto)
+        if (str_minuto.length == 1) minuto = "0" + minuto
+
+        str_hora = new String(hora)
+        if (str_hora.length == 1) hora = "0" + hora
+
+        document.getElementById('date').innerHTML = diasSemana[reloj.getDay()] + " " + dia + "  -  " + hora + " : " + minuto;
+
+        setTimeout("fechaHora()", 1000)
+    }
+
+    fechaHora();
+
+</script>
