@@ -27,6 +27,11 @@ body {
     margin-bottom: 36px;
 }
 
+.homeBlur {
+    background-color: rgba(71, 70, 70, 0.452);
+    padding-bottom: 30px;
+}
+
 @media (min-with: 992px) {
     .masthead h1 {
         font-size: 5.5rem;
